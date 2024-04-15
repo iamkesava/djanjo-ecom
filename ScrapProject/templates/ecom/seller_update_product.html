@@ -1,0 +1,107 @@
+{% extends 'ecom/seller_base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<head>
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+
+    .note {
+      text-align: center;
+      height: 80px;
+      background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+      color: #fff;
+      font-weight: bold;
+      line-height: 80px;
+    }
+
+    .form-content {
+      padding: 5%;
+      border: 1px solid #ced4da;
+      margin-bottom: 2%;
+    }
+
+    .form-control {
+      border-radius: 1.5rem;
+    }
+
+    .btnSubmit {
+      border: none;
+      border-radius: 1.5rem;
+      padding: 1%;
+      width: 20%;
+      cursor: pointer;
+      background: #0062cc;
+      color: #fff;
+    }
+
+    .menu {
+      top: 50px;
+    }
+  </style>
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<br><br><br><br><br><br>
+<!------ update page for doctor by admin(Rithika Scrap Shopping)  ---------->
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div style="margin-top: -100px;" class="container register-form">
+    <div class="form">
+      <div class="note">
+        <p>Update Product Details</p>
+      </div>
+      <div class="form-content">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              {% render_field productForm.name class="form-control" placeholder="Product Name" %}
+            </div>
+            <div class="form-group">
+              {% render_field productForm.description class="form-control" placeholder="Description" %}
+            </div>
+			<div class="form-group">
+              {% render_field productForm.cat class="form-control" placeholder="Category" %}
+            </div>
+			<div class="form-group">
+              {% render_field productForm.quantity class="form-control" placeholder="Quantity" %}
+            </div>
+           <div class="form-group">
+              {% render_field productForm.spec class="form-control" placeholder="Specification" %}
+            </div>
+          </div>
+          <div class="col-md-6">
+		  <div class="form-group">
+              {% render_field productForm.year class="form-control" placeholder="Year" %}
+            </div>
+			<div class="form-group">
+              {% render_field productForm.make class="form-control" placeholder="Make" %}
+            </div>
+              {% render_field productForm.price class="form-control" placeholder="Price" %}
+            </div>
+            <div class="form-group">
+              {% render_field productForm.product_image class="form-control" placeholder="product_image" %}
+            </div>
+ <div class="form-group">
+              {% render_field productForm.user_id value=request.user.id class="form-control" placeholder="Seller ID" %}
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btnSubmit">Update</button>
+      </div>
+    </div>
+  </div>
+</form>
+<div style="margin-bottom: -72px;margin-top: 50px;">{% include "ecom/footer.html" %}</div>
+
+<!--
+developed By : Rithika
+facebook : fb.com/Rithika Scrap Shopping.luv
+youtube : youtube.com/Student
+-->
+
+{% endblock content %}

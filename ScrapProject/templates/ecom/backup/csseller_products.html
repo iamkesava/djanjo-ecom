@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <style type="text/css">
+      .bs-example {
+        margin: 0px;
+      }
+
+      .navbar-brand {
+        font-size: 20px;
+        font-family: sans-serif;
+      }
+
+      /*---------------------------------------
+           Social section
+        -----------------------------------------*/
+      footer {
+        padding: 0px 0px 0px 0px;
+        background-color: black;
+        margin: 0px;
+      }
+
+      #ftr {
+        padding: 20px;
+      }
+
+      .fa {
+        font-size: 23px;
+        width: 60px;
+        text-align: center;
+        text-decoration: none;
+        margin: 5px 2px;
+        border-radius: 50%;
+      }
+
+      .fa:hover {
+        opacity: 0.5;
+        text-decoration: none;
+      }
+
+      .fa-facebook {
+        background: #3b5998;
+        color: white;
+        margin-top: 30px;
+      }
+
+      .fa-whatsapp {
+        background: #25d366;
+        color: white;
+      }
+
+      .fa-twitter {
+        background: #55acee;
+        color: white;
+      }
+
+      .fa-instagram {
+        background: #125688;
+        color: white;
+      }
+
+      p {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bs-example">
+      <div
+        class="navbar navbar-expand-md navbar-dark fixed-top"
+        style="background: #337ab7"
+      >
+        <img
+            style="width: 50px; height: 50px;"
+            src="../../static/images/header.jpeg"
+            alt=""
+          />
+        <a href="/" class="navbar-brand">ReClaim</a>
+        <button
+          type="button"
+          class="navbar-toggler"
+          data-toggle="collapse"
+          data-target="#navbarCollapse"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div
+          class="collapse navbar-collapse justify-content-between"
+          id="navbarCollapse"
+        >
+          <div class="navbar-nav">
+            <a href="/seller-products" class="nav-item nav-link">Products</a>
+            <a href="/seller-home" class="nav-item nav-link">Name wise</a>
+            <a href="/cseller-home" class="nav-item nav-link">Category wise</a>
+            <a href="/seller-stocks" class="nav-item nav-link">Stock</a>
+            <a href="/seller-view-booking" class="nav-item nav-link">Booking</a>
+            <a class="nav-item nav-link" href="slogout">Logout</a>
+
+            <form action="/scsearch" method="get">
+              <input
+                class="navbar-input col-xs-11"
+                type="search"
+                placeholder="Category wise"
+                name="query"
+                id="query"
+              />
+              <button class="navbar-button col-xs-1" type="submit">
+                <svg width="15px" height="15px">
+                  <path
+                    d="M11.618 9.897l4.224 4.212c.092.09.1.23.02.312l-1.464 1.46c-.08.08-.222.072-.314-.02L9.868 11.66M6.486 10.9c-2.42 0-4.38-1.955-4.38-4.367 0-2.413 1.96-4.37 4.38-4.37s4.38 1.957 4.38 4.37c0 2.412-1.96 4.368-4.38 4.368m0-10.834C2.904.066 0 2.96 0 6.533 0 10.105 2.904 13 6.486 13s6.487-2.895 6.487-6.467c0-3.572-2.905-6.467-6.487-6.467 "
+                  ></path>
+                </svg>
+              </button>
+            </form>
+            <form action="/ysearch" method="get">
+              <input
+                class="navbar-input col-xs-11"
+                type="search"
+                placeholder="Year wise"
+                name="query"
+                id="query"
+              />
+              <button class="navbar-button col-xs-1" type="submit">
+                <svg width="15px" height="15px">
+                  <path
+                    d="M11.618 9.897l4.224 4.212c.092.09.1.23.02.312l-1.464 1.46c-.08.08-.222.072-.314-.02L9.868 11.66M6.486 10.9c-2.42 0-4.38-1.955-4.38-4.367 0-2.413 1.96-4.37 4.38-4.37s4.38 1.957 4.38 4.37c0 2.412-1.96 4.368-4.38 4.368m0-10.834C2.904.066 0 2.96 0 6.533 0 10.105 2.904 13 6.486 13s6.487-2.895 6.487-6.467c0-3.572-2.905-6.467-6.487-6.467 "
+                  ></path>
+                </svg>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- content start-->
+      {% block content %}
+
+      <div class="navbar-search smallsearch col-sm-8 col-xs-11"></div>
+
+      {%if products%}
+      <h3 style="text-align: center; color: purple">{{word}}</h3>
+
+      {% for p in products %}
+      <!-- card1 -->
+      <div class="column">
+        <div class="container page-wrapper" style="width: 450px">
+          <div class="page-inner">
+            <div class="row">
+              <div class="el-wrapper">
+                <div class="box-up">
+                  <img
+                    class="img"
+                    src="{% static p.product_image.url %}"
+                    alt="product pic"
+                    height="300px"
+                    width="300px"
+                  />
+                  <div class="img-info">
+                    <div class="info-inner">
+                      <span
+                        style="background-color: #08050a; color: yellow"
+                        class="p-company"
+                        >{{p.name}}</span
+                      >
+                      <span
+                        style="background-color: #08050a; color: pink"
+                        class="p-company"
+                        >qty:{{p.quantity}}</span
+                      >
+                    </div>
+                    <div class="a-size">
+                      {{p.description}}. Make:{{p.make}}. Year:{{p.year}}
+                      Specification: {{p.spec}}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="box-down">
+                  <div class="h-bg">
+                    <div class="h-bg-inner"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- card1 end -->
+        {% if forloop.counter|divisibleby:"3" %}
+      </div>
+      <div class="row">
+        <br /><br /><br /><br /><br />
+        {% endif %} {% endfor %}
+      </div>
+      <!-- products data enddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd -->
+
+      {%else%}
+      <h3 style="text-align: center; color: yellow">No Search Found</h3>
+      {%endif%}
+
+      <script>
+        {%if messages %}
+        {%for message in messages%}
+        alert('{{message}}');
+        {%endfor%}
+        {%endif%}
+      </script>
+      <br />
+
+      <div class="container">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h6 class="panel-title">Category wise Product List</h6>
+          </div>
+          <table class="table table-hover" id="dev-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Year</th>
+                <th>Quantity</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Make</th>
+                <th>Specification</th>
+                <th>Update</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            {% for p in products %} {% if p %}
+
+            <tr>
+              <td>{{p.name}}</td>
+              <td>
+                <img
+                  src="{% static p.product_image.url %}"
+                  alt="Profile Pic"
+                  height="40px"
+                  width="40px"
+                />
+              </td>
+              <td>{{p.year}}</td>
+              <td>{{p.quantity}}</td>
+              <td>{{p.cat}}</td>
+              <td>{{p.description}}</td>
+              <td>{{p.make}}</td>
+              <td>{{p.spec}}</td>
+              <td>
+                <a
+                  class="btn btn-primary btn-xs"
+                  href="{% url 'supdate-product' p.id  %}"
+                  ><span class="glyphicon glyphicon-edit"></span
+                ></a>
+              </td>
+              <td>
+                <a
+                  class="btn btn-danger btn-xs"
+                  href="{% url 'sdelete-product' p.id  %}"
+                  ><span class="glyphicon glyphicon-trash"></span
+                ></a>
+              </td>
+            </tr>
+            {%else%}
+            <br /><br /><br />
+            <h1>no products</h1>
+            {% endif %} {% endfor %}
+          </table>
+        </div>
+      </div>
+      <!-- add product floating button -->
+      <a href="/seller-add-product" class="float">
+        <i class="fa fa-plus my-float"></i>
+      </a>
+      <!--
+developed By : Rithika
+facebook : fb.com/Rithika Scrap Shopping.luv
+youtube : youtube.com/Student
+-->
+      {% endblock content %}
+    </div>
+  </body>
+</html>

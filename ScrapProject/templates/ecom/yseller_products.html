@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <style type="text/css">
+      .bs-example {
+        margin: 0px;
+      }
+
+      .navbar-brand {
+        font-size: 20px;
+        font-family: sans-serif;
+      }
+
+      /*---------------------------------------
+           Social section
+        -----------------------------------------*/
+      footer {
+        padding: 0px 0px 0px 0px;
+        background-color: black;
+        margin: 0px;
+      }
+
+      #ftr {
+        padding: 20px;
+      }
+
+      .fa {
+        font-size: 23px;
+        width: 60px;
+        text-align: center;
+        text-decoration: none;
+        margin: 5px 2px;
+        border-radius: 50%;
+      }
+
+      .fa:hover {
+        opacity: 0.5;
+        text-decoration: none;
+      }
+
+      .fa-facebook {
+        background: #3b5998;
+        color: white;
+        margin-top: 30px;
+      }
+
+      .fa-whatsapp {
+        background: #25d366;
+        color: white;
+      }
+
+      .fa-twitter {
+        background: #55acee;
+        color: white;
+      }
+
+      .fa-instagram {
+        background: #125688;
+        color: white;
+      }
+
+      p {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bs-example">
+      <div
+        class=""
+        style="
+          background: #337ab7;
+          display: flex;
+          justify-content: space-between;
+        "
+      >
+        <div>
+            <img
+            style="width: 50px; height: 50px;"
+            src="../../static/images/header.jpeg"
+            alt=""
+          />
+          <a
+            href="/"
+            style="color: white; padding: 15px 20px"
+            class="navbar-brand"
+            >ReClaim</a
+          >
+        </div>
+
+        <div class="" id="navbarCollapse">
+          <div style="display: flex; margin-top: 10px" class="">
+            <p>
+              <a
+                href="/seller-products"
+                style="color: white"
+                class="nav-item nav-link"
+                >Products</a
+              >
+            </p>
+            <p>
+              <a
+                href="/seller-home"
+                style="color: white"
+                class="nav-item nav-link"
+                >Name wise</a
+              >
+            </p>
+            <p>
+              <a
+                href="/cseller-home"
+                style="color: white"
+                class="nav-item nav-link"
+                >Category wise</a
+              >
+            </p>
+            <p>
+              <a
+                href="/seller-stocks"
+                style="color: white"
+                class="nav-item nav-link"
+                >Stock</a
+              >
+            </p>
+            <p>
+              <a
+                href="/seller-view-booking"
+                style="color: white"
+                class="nav-item nav-link"
+                >Booking</a
+              >
+            </p>
+            <p>
+              <a style="color: white" class="nav-item nav-link" href="slogout"
+                >Logout</a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- content start-->
+    {% block content %}
+
+    <div style="margin-top: 100px" class="container">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h6
+            style="
+              text-align: center;
+              background-color: #337ab7;
+              padding: 10px 0px;
+              margin-bottom: -1px;
+              color: white;
+            "
+            class="panel-title"
+          >
+            Year wise Product List
+          </h6>
+        </div>
+        <table
+          style="border: 2px solid #dee2e6"
+          class="table table-hover"
+          id="dev-table"
+        >
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Image</th>
+              <th>Year</th>
+              <th>Quantity</th>
+              <th>Category</th>
+              <th>Description</th>
+              <th>Make</th>
+              <th>Specification</th>
+              <th>Update</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          {% for p in products %} {% if p %}
+
+          <tr>
+            <td>{{p.name}}</td>
+            <td>
+              <img
+                src="{% static p.product_image.url %}"
+                alt="Profile Pic"
+                height="40px"
+                width="40px"
+              />
+            </td>
+            <td>{{p.year}}</td>
+            <td>{{p.quantity}}</td>
+            <td>{{p.cat}}</td>
+            <td>{{p.description}}</td>
+            <td>{{p.make}}</td>
+            <td>{{p.spec}}</td>
+            <td>
+              <a
+                class="btn btn-primary btn-xs"
+                href="{% url 'supdate-product' p.id  %}"
+                ><span class="glyphicon glyphicon-edit"></span
+              ></a>
+            </td>
+            <td>
+              <a
+                class="btn btn-danger btn-xs"
+                href="{% url 'sdelete-product' p.id  %}"
+                ><span class="glyphicon glyphicon-trash"></span
+              ></a>
+            </td>
+          </tr>
+          {%else%}
+          <br /><br /><br />
+          <h1>no products</h1>
+          {% endif %} {% endfor %}
+        </table>
+      </div>
+    </div>
+    <!-- add product floating button -->
+    <a href="/seller-add-product" class="float">
+      <i class="fa fa-plus my-float"></i>
+    </a>
+
+    <div style="margin-bottom: -72px; margin-top: 330px">
+      {% include "ecom/footer.html" %}
+    </div>
+
+    {% endblock content %}
+  </body>
+</html>

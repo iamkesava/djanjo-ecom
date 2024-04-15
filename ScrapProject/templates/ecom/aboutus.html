@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Student || Rithika Scrap Shopping</title>
+
+  <title>Rithika Scrap Shopping</title>
+  <style media="screen">
+    .footer{
+      position: fixed;
+    }
+  </style>
+</head>
+
+<body style="background-color: #DDDDDD;">
+  <div style="min-height: 49vh">
+    {%if request.user.is_authenticated%}
+    {% include "ecom/customer_navbar.html" %}
+    {%else%}
+    {% include "ecom/navbar.html" %}
+    {%endif%}
+    <br><br><br>
+    <h3 style="text-align:center;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, aliquam dignissimos sit iure, corrupti iusto deserunt est itaque atque officiis non. Nam, laborum? Dolores corrupti illum tenetur sapiente cumque porro, commodi nulla quas iusto, tempora mollitia illo, esse sed asperiores accusantium aliquam enim. Laborum eveniet officiis modi unde dolorem voluptates dolorum aliquam? Culpa omnis eveniet provident doloribus repellat iusto facere nulla quod nemo, illum cumque minus alias assumenda? Assumenda, unde autem sunt eum neque nesciunt dolore, repellendus deserunt quisquam eligendi porro culpa quasi magnam impedit enim ipsa veritatis? Debitis quod aspernatur quaerat in dolorem aperiam perspiciatis qui ducimus excepturi blanditiis!</h3>
+  </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  {% include "ecom/footer.html" %}
+</body>
+<!--
+developed By : Rithika
+facebook : fb.com/Rithika Scrap Shopping.luv
+youtube : youtube.com/Student
+-->
+
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script>
+      function handleSubmit(event) {
+        if (!validate()) {
+          event.preventDefault();
+        }
+        return;
+      }
+      function getData() {
+        //gettting the values
+        var q = document.getElementById("query").value;
+
+        myform.elements["query"].value = q;
+        return true;
+      }
+    </script>
+
+    <style type="text/css">
+      .bs-example {
+        margin: 0px;
+      }
+
+      .navbar-brand {
+        font-size: 20px;
+        font-family: sans-serif;
+      }
+
+      /*---------------------------------------
+           Social section
+        -----------------------------------------*/
+      footer {
+        padding: 0px 0px 0px 0px;
+        background-color: black;
+        margin: 0px;
+      }
+
+      #ftr {
+        padding: 20px;
+      }
+
+      .fa {
+        font-size: 23px;
+        width: 60px;
+        text-align: center;
+        text-decoration: none;
+        margin: 5px 2px;
+        border-radius: 50%;
+      }
+
+      .fa:hover {
+        opacity: 0.5;
+        text-decoration: none;
+      }
+
+      .fa-facebook {
+        background: #3b5998;
+        color: white;
+        margin-top: 30px;
+      }
+
+      .fa-whatsapp {
+        background: #25d366;
+        color: white;
+      }
+
+      .fa-twitter {
+        background: #55acee;
+        color: white;
+      }
+
+      .fa-instagram {
+        background: #125688;
+        color: white;
+      }
+
+      p {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bs-example">
+      <div
+        class="navbar navbar-expand-md navbar-dark fixed-top"
+        style="
+          background: #337ab7;
+          display: flex;
+          justify-content: space-between;
+        "
+      >
+        <div>
+          <img
+            style="width: 50px; height: 50px;"
+            src="../../static/images/header.jpeg"
+            alt=""
+          />
+          <a href="/" class="navbar-brand">ReClaim</a>
+        </div>
+
+        <div class="" id="">
+          <div class="navbar-nav">
+            <a
+              href="/seller-products"
+              style="color: white"
+              class="nav-item nav-link"
+              >Products</a
+            >
+            <a
+              href="/seller-home"
+              style="color: white"
+              class="nav-item nav-link"
+              >Name wise</a
+            >
+            <a
+              href="/cseller-home"
+              style="color: white"
+              class="nav-item nav-link"
+              >Category wise</a
+            >
+            <a
+              href="/seller-stocks"
+              style="color: white"
+              class="nav-item nav-link"
+              >Stock</a
+            >
+            <a
+              href="/seller-view-booking"
+              style="color: white"
+              class="nav-item nav-link"
+              >Booking</a
+            >
+            <a style="color: white" class="nav-item nav-link" href="slogout"
+              >Logout</a
+            >
+          </div>
+        </div>
+      </div>
+
+      {% block content %}
+
+      <div class="navbar-search smallsearch col-sm-8 col-xs-11"></div>
+
+      <br />
+
+      <div style="margin-top: 80px" class="container">
+        <form
+          style="
+            width: 280px;
+            margin: 0px auto;
+            padding: 10px 25px;
+            border-radius: 5px;
+            background-color: #dddddd;
+          "
+          onsubmit="handleSubmit()"
+          action="/ysearch"
+          method="get"
+        >
+          <input
+            class="navbar-input col-xs-11"
+            onclick="getData()"
+            type="search"
+            style="border-radius: 5px"
+            placeholder="Year wise"
+            name="query"
+            id="query"
+          />
+          <button
+            style="border-radius: 5px"
+            class="navbar-button col-xs-1"
+            type="submit"
+          >
+            <svg width="15px" height="15px">
+              <path
+                d="M11.618 9.897l4.224 4.212c.092.09.1.23.02.312l-1.464 1.46c-.08.08-.222.072-.314-.02L9.868 11.66M6.486 10.9c-2.42 0-4.38-1.955-4.38-4.367 0-2.413 1.96-4.37 4.38-4.37s4.38 1.957 4.38 4.37c0 2.412-1.96 4.368-4.38 4.368m0-10.834C2.904.066 0 2.96 0 6.533 0 10.105 2.904 13 6.486 13s6.487-2.895 6.487-6.467c0-3.572-2.905-6.467-6.487-6.467 "
+              ></path>
+            </svg>
+          </button>
+        </form>
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h6
+              style="
+                background-color: #337ab7;
+                color: white;
+                padding: 10px 0px;
+                text-align: center;
+                margin-bottom: -0.5px;
+                margin-top: 30px;
+              "
+              class="panel-title"
+            >
+              Date wise Stock
+            </h6>
+          </div>
+          <table
+            style="border: 2px solid #dee2e6"
+            class="table table-hover"
+            id="dev-table"
+          >
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Date Modified</th>
+                <th>Download</th>
+                <th>Update</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            {% for p in stocks %} {% if p %}
+
+            <tr>
+              <td>{{p.name}}</td>
+              <td>{{p.quantity}}</td>
+              <td>{{p.date_modified}}</td>
+              <td>
+                <a
+                  class="btn btn-primary btn-xs"
+                  href="{% url 'ddownload' p.id  %}"
+                  ><img src="static/images/1.jpg" height="20px" width="20px"
+                /></a>
+              </td>
+
+              <td>
+                <a
+                  class="btn btn-primary btn-xs"
+                  href="{% url 'supdate-product' p.id  %}"
+                  ><span class="glyphicon glyphicon-edit"></span
+                ></a>
+              </td>
+              <td>
+                <a
+                  class="btn btn-danger btn-xs"
+                  href="{% url 'sdelete-product' p.id  %}"
+                  ><span class="glyphicon glyphicon-trash"></span
+                ></a>
+              </td>
+            </tr>
+            {%else%}
+            <br /><br /><br />
+            <h1>no products</h1>
+            {% endif %} {% endfor %}
+          </table>
+          <form name="myform" action="/download-datewise" method="get">
+            <input
+              type="text"
+              placeholder="Download Datewise"
+              name="query"
+              id="query"
+              value="{{query}}"
+            />
+            <button class="navbar-button col-xs-1" type="submit">
+              <img src="static/images/R.png" height="80px" width="100px" />
+            </button>
+          </form>
+        </div>
+      </div>
+      <a href="/seller-add-product" class="float">
+        <i class="fa fa-plus my-float"></i>
+      </a>
+
+      {% endblock content %}
+    </div>
+    <div style="margin-bottom: -72px">{% include "ecom/footer.html" %}</div>
+  </body>
+</html>

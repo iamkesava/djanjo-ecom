@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Description</title>
+    <!-- Add your CSS link or styles here -->
+    <style>
+        /* Add your custom CSS styles for the toolbar here */
+        .toolbar {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="toolbar"> 
+    <h1>Product Information</h1>
+    
+</div>
+<center>
+    <h2>Product Name: {{ product.name }}</h2>
+    <h2>Product Price: {{ product.price }}</h2>
+    <h2>years: {{ product.year }}</h2>
+    <h2>Make: {{ product.make }}</h2>
+    <h2>Product Price: {{ product.price }}</h2>
+    <h2>Product Cat: {{ product.cat }}</h2>
+    <h2>Product Spec: {{ product.spec }}</h2>
+    <h2>Product Description: <br>{{product.description}}</br></h2>
+</center>
+
+</body>
+</html>

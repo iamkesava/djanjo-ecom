@@ -1,0 +1,470 @@
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+    />
+    <!-- jQuery library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  </head>
+
+  {% extends 'ecom/homebase.html' %} {% load static %} {% block content %}
+
+  <style media="screen">
+    body,
+    html {
+      height: 100%;
+    }
+
+    .d-flex {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+    }
+
+    .align-center {
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+    }
+
+    .flex-centerY-centerX {
+      justify-content: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+    }
+
+    body {
+      background-color: #ffffff;
+    }
+
+    .page-wrapper {
+      height: 100%;
+      display: table;
+    }
+
+    .page-wrapper .page-inner {
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    .el-wrapper {
+      width: 360px;
+      padding: 15px;
+      margin: 15px auto;
+      background-color: #eeedeb;
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+        0 4px 6px -4px rgb(0 0 0 / 0.1);
+      border-radius: 10px;
+    }
+
+    @media (max-width: 991px) {
+      .el-wrapper {
+        width: 345px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .el-wrapper {
+        width: 290px;
+        margin: 30px auto;
+      }
+    }
+
+    .el-wrapper:hover .h-bg {
+      left: 0px;
+    }
+
+    .el-wrapper:hover .price {
+      left: 20px;
+      -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      -o-transform: translateY(-50%);
+      transform: translateY(-50%);
+      color: #818181;
+    }
+
+    .el-wrapper:hover .add-to-cart {
+      left: 50%;
+    }
+
+    .el-wrapper:hover .img {
+      webkit-filter: blur(7px);
+      -o-filter: blur(7px);
+      -ms-filter: blur(7px);
+      filter: blur(7px);
+      filter: progid:DXImageTransform.Microsoft.Blur(pixelradius='7', shadowopacity='0.0');
+      opacity: 0.4;
+    }
+
+    .el-wrapper:hover .info-inner {
+      bottom: 155px;
+    }
+
+    .el-wrapper:hover .a-size {
+      -webkit-transition-delay: 300ms;
+      -o-transition-delay: 300ms;
+      transition-delay: 300ms;
+      bottom: 50px;
+      opacity: 1;
+    }
+
+    .el-wrapper .box-down {
+      width: 100%;
+      height: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .el-wrapper .box-up {
+      width: 100%;
+      height: 300px;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .el-wrapper .img {
+      padding: 20px 0;
+      -webkit-transition: all 800ms cubic-bezier(0, 0, 0.18, 1);
+      -moz-transition: all 800ms cubic-bezier(0, 0, 0.18, 1);
+      -o-transition: all 800ms cubic-bezier(0, 0, 0.18, 1);
+      transition: all 800ms cubic-bezier(0, 0, 0.18, 1);
+      /* ease-out */
+      -webkit-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+      -moz-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+      -o-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+      transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+      /* ease-out */
+    }
+
+    .h-bg {
+      -webkit-transition: all 800ms cubic-bezier(0, 0, 0.18, 1);
+      -moz-transition: all 800ms cubic-bezier(0, 0, 0.18, 1);
+      -o-transition: all 800ms cubic-bezier(0, 0, 0.18, 1);
+      transition: all 800ms cubic-bezier(0, 0, 0.18, 1);
+      /* ease-out */
+      -webkit-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+      -moz-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+      -o-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+      transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+      /* ease-out */
+      width: 660px;
+      height: 100%;
+      background-color: #3f96cd;
+      position: absolute;
+      left: -659px;
+    }
+
+    .h-bg .h-bg-inner {
+      width: 50%;
+      height: 100%;
+      background-color: #464646;
+    }
+
+    .info-inner {
+      -webkit-transition: all 400ms cubic-bezier(0, 0, 0.18, 1);
+      -moz-transition: all 400ms cubic-bezier(0, 0, 0.18, 1);
+      -o-transition: all 400ms cubic-bezier(0, 0, 0.18, 1);
+      transition: all 400ms cubic-bezier(0, 0, 0.18, 1);
+      /* ease-out */
+      -webkit-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+      -moz-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+      -o-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+      transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+      /* ease-out */
+      position: absolute;
+      width: 100%;
+      bottom: 25px;
+    }
+
+    .info-inner .p-name,
+    .info-inner .p-company {
+      display: block;
+    }
+
+    .info-inner .p-name {
+      font-family: "PT Sans", sans-serif;
+      font-size: 18px;
+      color: #252525;
+    }
+
+    .info-inner .p-company {
+      font-family: "Lato", sans-serif;
+      font-size: 15px;
+      text-transform: uppercase;
+      color: #ffe11b;
+    }
+
+    .a-size {
+      -webkit-transition: all 300ms cubic-bezier(0, 0, 0.18, 1);
+      -moz-transition: all 300ms cubic-bezier(0, 0, 0.18, 1);
+      -o-transition: all 300ms cubic-bezier(0, 0, 0.18, 1);
+      transition: all 300ms cubic-bezier(0, 0, 0.18, 1);
+      /* ease-out */
+      -webkit-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+      -moz-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+      -o-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+      transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+      /* ease-out */
+      position: absolute;
+      width: 100%;
+      bottom: -20px;
+      font-family: "PT Sans", sans-serif;
+      color: #828282;
+      opacity: 0;
+    }
+
+    .a-size .size {
+      color: #252525;
+    }
+
+    .cart {
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      font-family: "Lato", sans-serif;
+      font-weight: 700;
+    }
+
+    .cart .price {
+      -webkit-transition: all 600ms cubic-bezier(0, 0, 0.18, 1);
+      -moz-transition: all 600ms cubic-bezier(0, 0, 0.18, 1);
+      -o-transition: all 600ms cubic-bezier(0, 0, 0.18, 1);
+      transition: all 600ms cubic-bezier(0, 0, 0.18, 1);
+      /* ease-out */
+      -webkit-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+      -moz-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+      -o-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+      transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+      /* ease-out */
+      -webkit-transition-delay: 100ms;
+      -o-transition-delay: 100ms;
+      transition-delay: 100ms;
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      -o-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      font-size: 16px;
+      color: #252525;
+    }
+
+    .cart .add-to-cart {
+      -webkit-transition: all 600ms cubic-bezier(0, 0, 0.18, 1);
+      -moz-transition: all 600ms cubic-bezier(0, 0, 0.18, 1);
+      -o-transition: all 600ms cubic-bezier(0, 0, 0.18, 1);
+      transition: all 600ms cubic-bezier(0, 0, 0.18, 1);
+      /* ease-out */
+      -webkit-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+      -moz-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+      -o-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+      transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+      /* ease-out */
+      -webkit-transition-delay: 100ms;
+      -o-transition-delay: 100ms;
+      transition-delay: 100ms;
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 110%;
+      -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      -o-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+
+    .cart .add-to-cart .txt {
+      font-size: 12px;
+      color: #fff;
+      letter-spacing: 0.045em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Create three equal columns that floats next to each other */
+    .column {
+      float: left;
+      width: 33.33%;
+      padding: 10px;
+      height: 500px; /* Should be removed. Only for demonstration */
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    .smallsearch {
+      margin-left: 15px;
+      margin-top: 15px;
+    }
+    /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+    @media screen and (max-width: 600px) {
+      .column {
+        width: 100%;
+      }
+    }
+  </style>
+
+  {%if products%}
+  <br />
+  <!-- products data starttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt -->
+  <div style="min-height: 50vh;">
+    <div
+      style="
+        margin-top: 15px;
+        display: flex;
+        max-width: 1000px;
+        margin-right: auto;
+        margin-left: auto;
+        justify-content: center;
+        padding-top: 15px;
+        background-color: #eeedeb;
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+          0 4px 6px -4px rgb(0 0 0 / 0.1);
+        border-radius: 10px;
+      "
+    >
+      <div class="">
+        <form action="/search" method="get">
+          <div class="">
+            <input
+              class="navbar-input"
+              type="search"
+              style="
+                width: 700px;
+                border-radius: 10px;
+                padding-bottom: 7px;
+                margin-right: 5px;
+              "
+              placeholder="Search for Products"
+              name="query"
+              id="query"
+            />
+            <button
+              class="navbar-button"
+              style="padding-top: 10px; padding: 0px 40px; border-radius: 10px"
+              type="submit"
+            >
+              <svg width="15px" height="15px">
+                <path
+                  d="M11.618 9.897l4.224 4.212c.092.09.1.23.02.312l-1.464 1.46c-.08.08-.222.072-.314-.02L9.868 11.66M6.486 10.9c-2.42 0-4.38-1.955-4.38-4.367 0-2.413 1.96-4.37 4.38-4.37s4.38 1.957 4.38 4.37c0 2.412-1.96 4.368-4.38 4.368m0-10.834C2.904.066 0 2.96 0 6.533 0 10.105 2.904 13 6.486 13s6.487-2.895 6.487-6.467c0-3.572-2.905-6.467-6.487-6.467 "
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div style="margin-left: 15px; border-radius: 20px">
+        <a class="cart-button" href="/cart">
+          <svg class="cart-svg" width="16 " height="16 " viewBox="0 0 16 16 ">
+            <path
+              d="M15.32 2.405H4.887C3 2.405 2.46.805 2.46.805L2.257.21C2.208.085 2.083 0 1.946 0H.336C.1 0-.064.24.024.46l.644 1.945L3.11 9.767c.047.137.175.23.32.23h8.418l-.493 1.958H3.768l.002.003c-.017 0-.033-.003-.05-.003-1.06 0-1.92.86-1.92 1.92s.86 1.92 1.92 1.92c.99 0 1.805-.75 1.91-1.712l5.55.076c.12.922.91 1.636 1.867 1.636 1.04 0 1.885-.844 1.885-1.885 0-.866-.584-1.593-1.38-1.814l2.423-8.832c.12-.433-.206-.86-.655-.86 "
+              fill="#fff "
+            ></path>
+          </svg>
+          <span style="color: white"> Cart </span>
+          <span class="item-number">{{ product_count_in_cart }}</span>
+        </a>
+      </div>
+    </div>
+    <h3 style="text-align: center; color: yellow">{{word}}</h3>
+
+    {% for p in products %}
+    <!-- card1 -->
+    <div class="column">
+      <div class="container page-wrapper" style="width: 450px">
+        <div class="page-inner">
+          <div class="row">
+            <div class="el-wrapper">
+              <div class="box-up border-radius: 50px; background-color: red">
+                <!-- <img
+                  class="img"
+                  src="{% static p.product_image.url %}"
+                  alt="product pic"
+                  height="300px"
+                  width="300px"
+                /> -->
+                <a href="{% url 'info_page' p.id %}">
+                  <img class="img" src="{% static p.product_image.url %}" alt="product pic" height="300px" width="300px">
+              </a>
+                
+              
+                <div class="img-info">
+                  <div class="info-inner">
+                  <!--  <div class="a-size">
+                      {{p.description}}. Make:{{p.make}}. Year:{{p.year}}
+                      Specification: {{p.spec}}
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+
+              <div class="box-down">
+                <div class="h-bg">
+                  <div class="h-bg-inner"></div>
+                </div>
+
+                <a class="cart" href="{% url 'add-to-cart' p.id  %}">
+                  <span class="price">₹ {{p.price}}</span>
+                  <span class="add-to-cart">
+                    <span class="txt">Add in cart</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- card1 end -->
+    {% if forloop.counter|divisibleby:"3" %}
+  </div>
+
+  <div class="row">
+    <br /><br /><br /><br /><br />
+
+    {% endif %} {% endfor %}
+  </div>
+  <!-- products data enddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd -->
+  {%else%}
+  <h3 style="text-align: center; color: yellow">No Search Found</h3>
+  {%endif%}
+
+  <script>
+    {%if messages %}
+    {%for message in messages%}
+    alert('{{message}}');
+    {%endfor%}
+    {%endif%}
+  </script>
+
+  <br /><br /><br />
+  <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+  {% endblock content %}
+</html>
+
+
+
+

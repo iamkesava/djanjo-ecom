@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <!-- <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    /> -->
+
+    <style type="text/css">
+      .navbar-brand {
+        font-size: 20px;
+        font-family: sans-serif;
+      }
+
+      /*---------------------------------------
+           Social section
+        -----------------------------------------*/
+      footer {
+        padding: 0px 0px 0px 0px;
+        background-color: black;
+        margin: 0px;
+      }
+
+      #ftr {
+        padding: 20px;
+      }
+
+      .fa {
+        font-size: 23px;
+        width: 60px;
+
+        text-decoration: none;
+        margin: 5px 2px;
+        border-radius: 50%;
+      }
+
+      .fa:hover {
+        opacity: 0.5;
+        text-decoration: none;
+      }
+      .focus:focus {
+        border: "2px solid white";
+        border-radius: "10px";
+      }
+      .fa-facebook {
+        background: #3b5998;
+        color: white;
+        margin-top: 30px;
+      }
+
+      .fa-whatsapp {
+        background: #25d366;
+        color: white;
+      }
+
+      .fa-twitter {
+        background: #55acee;
+        color: white;
+      }
+
+      .fa-instagram {
+        background: #125688;
+        color: white;
+      }
+
+      p {
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="bs-example">
+      <div
+        class="navbar navbar-expand-md"
+        style="
+          background: #337ab7;
+          display: flex;
+          justify-content: space-between;
+        "
+      >
+        <div>
+          <img
+            style="width: 50px; height: 50px;"
+            src="../../static/images/header.jpeg"
+            alt=""
+          />
+
+          <a href="/" style="color: white" class="navbar-brand">ReClaim</a>
+        </div>
+
+        <div style="text-align: right" id="navbarCollapse">
+          <div class="navbar-nav">
+            <a
+              href="/seller-products"
+              style="color: white"
+              id="Products"
+              class="nav-item nav-link"
+              >Products</a
+            >
+            <a
+              href="/seller-home"
+              style="color: white"
+              class="nav-item nav-link"
+              >Name wise</a
+            >
+            <a
+              href="/cseller-home"
+              style="color: white"
+              class="nav-item nav-link"
+              >Category wise</a
+            >
+            <a
+              id="stock"
+              href="/seller-stocks"
+              style="color: white"
+              class="nav-item nav-link focus"
+              >Stock</a
+            >
+            <a
+              id="booking"
+              href="/seller-view-booking"
+              style="color: white"
+              class="nav-item nav-link"
+              >Booking</a
+            >
+            <a style="color: white" class="nav-item nav-link" href="slogout"
+              >Logout</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- content start-->
+    {% block content %} {% endblock content %}
+
+    <!-- content end-->
+    <br /><br /><br />
+
+    <script>
+      const product = document.getElementById("Products");
+      const url = window.location.pathname;
+      if (url === "/seller-products") {
+        product.style.border = "2px solid white";
+        product.style.borderRadius = "10px";
+      }
+      const stock = document.getElementById("stock");
+      const urlstock = window.location.pathname;
+      if (urlstock === "/seller-stocks") {
+        stock.style.border = "2px solid white";
+        stock.style.borderRadius = "10px";
+      }
+      const booking = document.getElementById("booking");
+      const urlbooking = window.location.pathname;
+      if (urlbooking === "/seller-view-booking") {
+        booking.style.border = "2px solid white";
+        booking.style.borderRadius = "10px";
+      }
+      $(document).ready(function () {
+        function openNav() {
+          document.getElementById("mySidenav").style.width = "70%";
+
+          document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+        }
+
+        function closeNav() {
+          document.getElementById("mySidenav").style.width = "0";
+          document.body.style.backgroundColor = "rgba(0,0,0,0)";
+        }
+      });
+    </script>
+  </body>
+</html>

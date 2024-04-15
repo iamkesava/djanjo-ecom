@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!-- <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    /> -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <style type="text/css">
+      .bs-example {
+        margin: 0px;
+      }
+
+      .navbar-brand {
+        font-size: 20px;
+        font-family: sans-serif;
+      }
+
+      /*---------------------------------------
+           Social section
+        -----------------------------------------*/
+      footer {
+        padding: 0px 0px 0px 0px;
+        background-color: black;
+        margin: 0px;
+      }
+
+      #ftr {
+        padding: 20px;
+      }
+
+      .fa {
+        font-size: 23px;
+        width: 60px;
+        text-align: center;
+        text-decoration: none;
+        margin: 5px 2px;
+        border-radius: 50%;
+      }
+
+      .fa:hover {
+        opacity: 0.5;
+        text-decoration: none;
+      }
+
+      .fa-facebook {
+        background: #3b5998;
+        color: white;
+        margin-top: 30px;
+      }
+
+      .fa-whatsapp {
+        background: #25d366;
+        color: white;
+      }
+
+      .fa-twitter {
+        background: #55acee;
+        color: white;
+      }
+
+      .fa-instagram {
+        background: #125688;
+        color: white;
+      }
+
+      p {
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div
+      class=""
+      style="
+        padding: 0px 10px;
+        background: #337ab7;
+        display: flex;
+        justify-content: space-between;
+      "
+    >
+      <div>
+        <h3>
+          <img
+            style="width: 50px; height: 50px;"
+            src="../../static/images/header.jpeg"
+            alt=""
+          />
+          <a href="/" style="color: white" class="">ReClaim</a>
+        </h3>
+      </div>
+
+      <div class="" id="navbarCollapse">
+        <div style="padding-right: 20px; display: flex">
+          <a
+            href="/view-customer"
+            style="
+              color: white;
+              padding: 10px 8px;
+              margin: 20px 0px;
+              font-size: 15px;
+              margin-right: 25px;
+            "
+            id="customer"
+            class="nav-item nav-link"
+            >Customer</a
+          >
+          <a
+            href="/view-seller"
+            style="
+              color: white;
+              padding: 10px 8px;
+              margin: 20px 0px;
+              font-size: 15px;
+              margin-right: 25px;
+            "
+            id="seller"
+            class="nav-item nav-link"
+            >Seller</a
+          >
+          <a
+            id="AllOrders"
+            href="/admin-view-booking"
+            style="
+              color: white;
+              padding: 10px 8px;
+              margin: 20px 0px;
+              font-size: 15px;
+              margin-right: 25px;
+            "
+            class="nav-item nav-link"
+            >All Orders</a
+          >
+          <a
+            id="Feedback"
+            href="/view-feedback"
+            style="
+              color: white;
+              padding: 10px 8px;
+              margin: 20px 0px;
+              font-size: 15px;
+              margin-right: 25px;
+            "
+            class="nav-item nav-link"
+            >Feedback</a
+          >
+          <a
+            id="logout"
+            href="alogout"
+            style="
+              color: white;
+              padding: 10px 8px;
+              margin: 20px 0px;
+              font-size: 15px;
+              margin-right: 25px;
+            "
+            class="nav-item nav-link"
+            >logout</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <div style="min-height: 68vh">
+      <!-- content start-->
+      {% block content %} {% endblock content %}
+    </div>
+
+    <!-- content end-->
+    <br /><br /><br /><br /><br /><br /><br /><br />
+    <div style="margin-bottom: -210px">{% include "ecom/footer.html" %}</div>
+
+    <br />
+  </body>
+  <script>
+    const seller = document.getElementById("seller");
+    const url = window.location.pathname;
+    if (url === "/view-seller") {
+      seller.style.border = "2px solid white";
+      seller.style.borderRadius = "10px";
+    }
+    const order = document.getElementById("AllOrders");
+    const urlorder = window.location.pathname;
+    if (urlorder === "/admin-view-booking") {
+      order.style.border = "2px solid white";
+      order.style.borderRadius = "10px";
+    }
+    const feedback = document.getElementById("Feedback");
+    const urlfeedback = window.location.pathname;
+    if (urlfeedback === "/view-feedback") {
+      feedback.style.border = "2px solid white";
+      feedback.style.borderRadius = "10px";
+    }
+  </script>
+</html>

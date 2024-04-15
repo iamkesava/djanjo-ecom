@@ -1,0 +1,158 @@
+{% extends 'ecom/seller_base.html' %} {% load static %} {% block content %}
+
+<head>
+  <!-- <link
+    href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+    rel="stylesheet"
+    id="bootstrap-css"
+  /> -->
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+
+    h6 {
+      text-align: center;
+    }
+
+    .row {
+      margin: 100px;
+    }
+
+    .float {
+      position: fixed;
+      width: 70px;
+      height: 70px;
+      bottom: 60px;
+      right: 60px;
+      background-color: red;
+      color: #fff;
+      border-radius: 50px;
+      text-align: center;
+      box-shadow: 3px 3px 3px #999;
+    }
+
+    .my-float {
+      margin-top: 22px;
+    }
+  </style>
+</head>
+
+<div>
+  <div style="min-height: 85vh; margin-top: 50px" class="container">
+    <div
+      style="
+        display: flex;
+        width: 250px;
+        margin: 0px auto;
+        padding: 20px;
+        padding: 10px 0px;
+        background-color: #dddddd;
+        border-radius: 5px;
+        justify-content: center;
+      "
+    >
+      <form action="/dsearch" method="get">
+        <input
+          class="navbar-input col-xs-11"
+          type="search"
+          placeholder="Date wise"
+          name="query"
+          id="query"
+        />
+        <button class="navbar-button col-xs-1" type="submit">
+          <svg width="15px" height="15px">
+            <path
+              d="M11.618 9.897l4.224 4.212c.092.09.1.23.02.312l-1.464 1.46c-.08.08-.222.072-.314-.02L9.868 11.66M6.486 10.9c-2.42 0-4.38-1.955-4.38-4.367 0-2.413 1.96-4.37 4.38-4.37s4.38 1.957 4.38 4.37c0 2.412-1.96 4.368-4.38 4.368m0-10.834C2.904.066 0 2.96 0 6.533 0 10.105 2.904 13 6.486 13s6.487-2.895 6.487-6.467c0-3.572-2.905-6.467-6.487-6.467 "
+            ></path>
+          </svg>
+        </button>
+      </form>
+    </div>
+
+    <div style="margin-top: 40px" class="panel panel-primary">
+      <div style="margin: 20px 0px; text-align: right">
+        <a
+          style="
+            padding: 4px 14px;
+            text-align: right;
+            border-radius: 2px;
+            color: white;
+            border-color: #337ab7;
+            outline-color: #337ab7;
+            background-color: #337ab7;
+          "
+          href="/seller-add-stock"
+          class=""
+        >
+          Add
+        </a>
+      </div>
+      <div
+        style="background-color: #337ab7; padding: 3px 0px"
+        class="panel-heading"
+      >
+        <h6 style="padding-top: 7px; color: white" class="panel-title">
+          Total Stock List
+        </h6>
+      </div>
+      <table
+        style="border: 2px solid #dee2e6"
+        class="table table-hover"
+        id="dev-table"
+      >
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Date Created</th>
+            <th>Quantity</th>
+            <th>Date Modified</th>
+            <th>Download</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        {% for p in stocks %} {% if p %}
+
+        <tr>
+          <td>{{p.name}}</td>
+          <td>{{p.created_date}}</td>
+          <td>{{p.quantity}}</td>
+          <td>{{p.date_modified}}</td>
+          <td>
+            <a class="btn btn-primary btn-xs" href="{% url 'ddownload' p.id  %}"
+              ><img src="static/images/1.jpg" height="20px" width="20px"
+            /></a>
+          </td>
+          <td>
+            <a
+              class="btn btn-primary btn-xs"
+              href="{% url 'supdate-stock' p.id  %}"
+              ><span class="glyphicon glyphicon-edit"></span
+            ></a>
+          </td>
+
+          <td>
+            <a
+              class="btn btn-danger btn-xs"
+              href="{% url 'sdelete-stock' p.id  %}"
+              ><span class="glyphicon glyphicon-trash"></span
+            ></a>
+          </td>
+        </tr>
+        {%else%}
+        <br /><br /><br />
+        <h1>no stocks</h1>
+        {% endif %} {% endfor %}
+      </table>
+    </div>
+  </div>
+  <div style="margin-bottom: -72px">{% include "ecom/footer.html" %}</div>
+</div>
+
+<!-- add product floating button -->
+
+{% endblock content %}
